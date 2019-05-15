@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html data-ng-app="exampleApp" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS validation plugin for Bootstrap 4</title>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../dist/angularjs-bootstrap4-validate.css">
+	<style type="text/css">
+		[ng-cloak] {
+			display: none;
+		}
+		h3.page-header, h4.page-header {
+			padding-top: 30px;
+			padding-bottom: 9px;
+			margin: 0 0 20px;
+			border-bottom: 1px solid #eee;
+		}
+	</style>
+</head>
+<body>
+<div class="container-fluid" ng-cloak>
+	<div class="row">
+		<div class="col-md-3 col-xl-2">
+			<ul class="nav flex-column sticky-top mt-4">
+				<li class="nav-item" ng-repeat="n in $root.nav">
+					<a class="nav-link" href="#{{::n.id}}">{{::n.title}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-9 col-xl-10 mb-5" data-ng-controller="exampleCtrl as vm">
+			<h4 class="page-header" id="overview">Overview</h4>
+			<p>
+				This plugin integrates form validation in AngularJS and Bootstrap 4 by extending <code>form</code>
+				and <code>ng-model</code> directives.<br/>
+				It also provides a custom CSS file that removes default browser box-shadow from invalid form
+				controls in validated forms.<br/>
+				Use <code>novalidate</code> html5 directive on form element if you want to disable
+				it's validation.<br/>
+				<br/>
+				This plugin also provides a set of <a href="#additional-validators">additional validators</a>
+				and can be easily <a href="#i18n">internationalized</a>.
+			</p>
+			<h4 class="page-header" id="basic-example">Basic validation example</h4>
+			<div class="card">
+				<div class="card-header">
+					All validation errors are added automatically to all elements with <code>ng-model</code> directive that are contained in
+					form
+					element.<br/>
+					Validation errors are displayed upon form submission or input change.<br/>
+					Also, you can reset form validation state using <code>{formName}.resetValidation()</code> method.
+				</div>
+				<div class="card-body" code-example-hook>
+					<form name="basicForm" ng-submit="vm.ex1.submitted = true">
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label>First name</label>
+								<input type="text" class="form-control" ng-model="vm.ex1.first_name" required>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Last name</label>
+								<input type="text" class="form-control" ng-model="vm.ex1.last_name" required>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Username</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">@</span>
+									</div>
+									<input type="text" class="form-control" ng-model="vm.ex1.username" required>
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Gender</label>
+								<select class="form-control" ng-model="vm.ex1.gender" required>
+									<option></option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" ng-model="vm.ex1.check"
+										   id="invalidCheck" required>
+									<label class="form-check-label" for="invalidCheck">
+										Agree to terms and conditions
+									</label>
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="exampleRadios1" name="ex1radio"
+										   ng-model="vm.ex1.radio" value="1">
+									<label class="form-check-label" for="exampleRadios1">
+										Default radio
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="exampleRadios2" name="ex1radio"
+										   ng-model="vm.ex1.radio" value="2" required>
+									<label class="form-check-label" for="exampleRadios2">
+										Second default radio
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="alert alert-success" ng-if="vm.ex1.submitted">
+							Form submitted successfully!
+						</div>
+						<button class="btn btn-primary" type="submit">Submit form</button>
+						<button type="button" class="btn btn-secondary"
+								ng-click="basicForm.resetValidation()">Reset
+						</button>
+					</form>
+				</div>
+			</div>
+			<h4 class="page-header" id="tooltips">Tooltips</h4>
+			<div class="card">
+				<div class="card-header">
+					You can use <code>'invalid-tooltip'</code> instead of <code>'invalid-feedback'</code> by using the
+					<code>validate-mode</code>
+					directive on form element.<br/>
+					Default validate-mode can be changed in <code>validateProvider</code>.
+				</div>
+				<div class="card-body" code-example-hook>
+					<form name="tooltipForm" ng-submit="vm.ex2.submitted = true" validate-mode="tooltip">
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label>First name</label>
+								<input type="text" class="form-control" ng-model="vm.ex2.first_name" required>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Last name</label>
+								<input type="text" class="form-control" ng-model="vm.ex2.last_name" required>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Username</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">@</span>
+									</div>
+									<input type="text" class="form-control" ng-model="vm.ex2.username" required>
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>Gender</label>
+								<select class="form-control" ng-model="vm.ex2.gender" required>
+									<option></option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" ng-model="vm.ex2.check"
+										   id="invalidCheck2" required>
+									<label class="form-check-label" for="invalidCheck2">
+										Agree to terms and conditions
+									</label>
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="exampleRadios3" name="ex2radio"
+										   ng-model="vm.ex2.radio" value="1">
+									<label class="form-check-label" for="exampleRadios3">
+										Default radio
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="exampleRadios4" name="ex2radio"
+										   ng-model="vm.ex2.radio" value="2" required>
+									<label class="form-check-label" for="exampleRadios4">
+										Second default radio
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="alert alert-success" ng-if="vm.ex2.submitted">
+							Form submitted successfully!
+						</div>
+						<button class="btn btn-primary" type="submit">Submit form</button>
+					</form>
+				</div>
+			</div>
+			<h4 class="page-header" id="custom-message">Custom message</h4>
+			<div class="card">
+				<div class="card-header">
+					You can change default error message by using the <code>{validateDirective}-error-msg</code>.<br/>
+					E.g. <code>required-error-message="custom text"</code> or <code>min-error-message="custom text"</code>
+				</div>
+				<div class="card-body" code-example-hook>
+					<form>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="vm.ex3" required
+								   data-required-error-msg="Custom text"/>
+						</div>
+						<button class="btn btn-primary" type="submit">Submit form</button>
+					</form>
+				</div>
+			</div>
+			<h4 class="page-header" id="supported-validators">Supported HTML5 & angularJS validators</h4>
+			<div class="card">
+				<div class="card-body">
+					<form>
+						<div class="form-row">
+							<div class="col-md-4 mb-3">
+								<label>required</label>
+								<input type="text" class="form-control" ng-model="vm.ex4.required" required/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>pattern</label>
+								<input type="text" class="form-control" ng-model="vm.ex4.pattern"
+									   pattern="^[A-Z]+$"/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>email</label>
+								<input type="email" class="form-control" ng-model="vm.ex4.email"/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-4 mb-3">
+								<label>number</label>
+								<input type="number" class="form-control" ng-model="vm.ex4.number"/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>min</label>
+								<input type="number" class="form-control" ng-model="vm.ex4.min" min="0"/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>max</label>
+								<input type="number" class="form-control" ng-model="vm.ex4.max" max="10"/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-4 mb-3" ng-init="required=true">
+								<label>
+									ng-required
+									<a href="javascript:" ng-click="required=!required">toggle</a>
+								</label>
+								<input type="number" class="form-control" ng-model="vm.ex4.ngRequired"
+									   ng-required="required"/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>ng-pattern</label>
+								<input type="text" class="form-control" ng-model="vm.ex4.ngPattern"
+									   ng-pattern="'^[A-Z]+$'"/>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>ng-maxlength</label>
+								<input type="text" class="form-control" ng-model="vm.ex4.ngMaxlength"
+									   ng-maxlength="2"/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-4 mb-3">
+								<label>ng-minlength</label>
+								<input type="text" class="form-control" ng-model="vm.ex4.ngMinlength"
+									   ng-minlength="10"/>
+							</div>
+						</div>
+						<button class="btn btn-primary" type="submit">Submit form</button>
+					</form>
+				</div>
+			</div>
+			<h4 class="page-header" id="additional-validators">Additional validators</h4>
+			<div class="card">
+				<div class="card-header">
+					This plugin provides a set of custom validators which are available by adding
+					a directive to desired form control
+					(eg. <code>&lt;input type="text" ng-model="..." validate-url/&gt;</code>).<br/>
+					<code>validate-url</code> and <code>validate-host</code> can also be added to an &lt;textarea&gt;
+					element and validate it contents line by line.
+				</div>
+				<div class="card-body">
+					<form>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label>validate-url</label>
+								<input type="text" class="form-control" ng-model="vm.ex5.url" validate-url/>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>validate-host</label>
+								<input type="text" class="form-control" ng-model="vm.ex5.host" validate-host/>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>validate-equal</label>
+								<input type="text" class="form-control" ng-model="vm.ex5.eq1"/>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>&nbsp;</label>
+								<input type="text" class="form-control" ng-model="vm.ex5.eq2"
+									   validate-equal="vm.ex5.eq1"/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label>validate-url</label>
+								<textarea class="form-control" ng-model="vm.ex5.urls" validate-url></textarea>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>validate-host</label>
+								<textarea class="form-control" ng-model="vm.ex5.hosts" validate-host></textarea>
+							</div>
+						</div>
+
+						<button class="btn btn-primary" type="submit">Submit form</button>
+					</form>
+				</div>
+			</div>
+			<h4 class="page-header" id="i18n">i18n</h4>
+			<div class="card">
+				<div class="card-header">
+					All default error messages can be configured in <code>validateProvider</code>.<br/>
+					You can also include a language file from <code>dist/i18n/</code> directory to change
+					default (english) language.<br/>
+					So far only english and polish languages are available.
+				</div>
+			</div>
+			<h4 class="page-header" id="input-group-fix">Input group fix</h4>
+			<div class="card">
+				<div class="card-header">
+					This plugin additionally provides a fix for
+					<a href="https://github.com/twbs/bootstrap/issues/25110" rel="nofollow"
+					   target="_blank">input-group missing border radius</a>
+					by adding <code>input-group-fix</code> css class to the last non-feedback child element
+					of input-group.<br/>
+					For this to work properly you need to include provided CSS file in your document.<br/>
+					You can disable this fix in <code>validateProvider</code> by setting <code>inputGroupFix</code>
+					to <code>false</code>.
+				</div>
+				<div class="card-body was-validated">
+					<div class="row">
+						<div class="col-md-6">
+							<h6>Without fix</h6>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">@</span>
+								</div>
+								<input type="text" class="form-control" required/>
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h6>With fix</h6>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">@</span>
+								</div>
+								<input type="text" class="form-control input-group-fix" required/>
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="../dist/angularjs-bootstrap4-validate.js"></script>
+<script type="text/javascript" src="example.js"></script>
+</body>
+</html>

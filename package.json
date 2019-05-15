@@ -1,0 +1,29 @@
+{
+  "name": "angularjs-bootstrap4-validate",
+  "version": "1.0.0",
+  "description": "AngularJS validation plugin for Bootstrap 4.",
+  "main": "dist/angularjs-bootstrap4-validate.js",
+  "repository": "https://github.com/Rodziu/angularjs-bootstrap4-validate",
+  "author": "Mateusz Rohde <mateusz.rohde@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://mateuszrohde.pl/repository/angularjs-bootstrap4-validate",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "bootstrap": "^4.3.1"
+  },
+  "devDependencies": {
+    "@rodziu/gulp-ng-annotate-patched": "^1.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-plugin-angular": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify-es": "^1.0.4",
+    "ng-annotate-patched": "^1.9.0"
+  }
+}

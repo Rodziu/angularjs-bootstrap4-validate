@@ -1,0 +1,14 @@
+/*!
+ * AngularJS validation plugin for  Bootstrap 4
+ *  Copyright (c) 2019 Rodziu <mateusz.rohde@gmail.com>
+ *  License: MIT
+ */
+form:not([novalidate]) .form-control, form:not([novalidate]) .custom-select, form:not([novalidate]) input[type="checkbox"], form:not([novalidate]) input[type="radio"] {
+  box-shadow: none; }
+
+form:not([novalidate]) .invalid-feedback:empty, form:not([novalidate]) .invalid-tooltip:empty {
+  display: none !important; }
+
+.input-group > .input-group-fix {
+  border-top-right-radius: .25rem !important;
+  border-bottom-right-radius: .25rem !important; }
