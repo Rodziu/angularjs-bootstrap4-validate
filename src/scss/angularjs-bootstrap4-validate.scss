@@ -4,6 +4,9 @@
  *  License: MIT
  */
 
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
 form:not([novalidate]) {
   .form-control, .custom-select, input[type="checkbox"], input[type="radio"] {
     box-shadow: none;
@@ -15,6 +18,36 @@ form:not([novalidate]) {
     }
   }
 
+  &.was-validated {
+    @each $state, $data in $form-validation-states {
+      $color: map-get($data, color);
+      $icon: map-get($data, icon);
+      .ng-#{$state} {
+        & ~ .#{$state}-feedback, & ~ .#{$state}-tooltip {
+          display: block;
+        }
+        &.form-control, > .form-control {
+          border-color: $color;
+
+          @if $enable-validation-icons {
+            padding-right: $input-height-inner;
+            background-image: $icon;
+            background-repeat: no-repeat;
+            background-position: center right $input-height-inner-quarter;
+            background-size: $input-height-inner-half $input-height-inner-half;
+          }
+        }
+        &.custom-select, > .custom-select {
+          border-color: $color;
+
+          @if $enable-validation-icons {
+            padding-right: $custom-select-feedback-icon-padding-right;
+            background: $custom-select-background, $icon $custom-select-bg no-repeat $custom-select-feedback-icon-position / $custom-select-feedback-icon-size;
+          }
+        }
+      }
+    }
+  }
 }
 
 .input-group > .input-group-fix {

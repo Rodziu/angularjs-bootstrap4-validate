@@ -357,6 +357,69 @@
 					</div>
 				</div>
 			</div>
+			<h4 class="page-header" id="custom-controls">Custom controls support</h4>
+			<div class="card">
+				<div class="card-header">
+					Custom form controls (eg. angularJS components) are supported via provided CSS file that utilizes angularJS
+					.ng-invalid/.ng-valid classes.
+				</div>
+				<div class="card-body">
+					<form class="was-validated">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="custom-select ng-invalid"></div>
+								<div class="invalid-feedback">Invalid feedback</div>
+								<div class="valid-feedback">Valid feedback</div>
+							</div>
+							<div class="col-md-3">
+								<div class="custom-select ng-valid"></div>
+								<div class="invalid-feedback">Invalid feedback</div>
+								<div class="valid-feedback">Valid feedback</div>
+							</div>
+							<div class="col-md-3 form-group">
+								<div class="form-control ng-invalid"></div>
+								<div class="invalid-tooltip">Invalid feedback</div>
+								<div class="valid-tooltip">Valid feedback</div>
+							</div>
+							<div class="col-md-3 form-group">
+								<div class="form-control ng-valid"></div>
+								<div class="invalid-tooltip">Invalid feedback</div>
+								<div class="valid-tooltip">Valid feedback</div>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-3">
+								<div class="ng-invalid">
+									<div class="custom-select"></div>
+								</div>
+								<div class="invalid-feedback">Invalid feedback</div>
+								<div class="valid-feedback">Valid feedback</div>
+							</div>
+							<div class="col-md-3">
+								<div class="ng-valid">
+									<div class="custom-select"></div>
+								</div>
+								<div class="invalid-feedback">Invalid feedback</div>
+								<div class="valid-feedback">Valid feedback</div>
+							</div>
+							<div class="col-md-3 form-group">
+								<div class="ng-invalid">
+									<div class="form-control"></div>
+								</div>
+								<div class="invalid-tooltip">Invalid feedback</div>
+								<div class="valid-tooltip">Valid feedback</div>
+							</div>
+							<div class="col-md-3 form-group">
+								<div class="ng-valid">
+									<div class="form-control"></div>
+								</div>
+								<div class="invalid-tooltip">Invalid feedback</div>
+								<div class="valid-tooltip">Valid feedback</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
