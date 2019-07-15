@@ -24,6 +24,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify-es": "^1.0.4",
+    "lodash": "^4.17.13",
     "ng-annotate-patched": "^1.9.0"
   }
 }

@@ -50,7 +50,7 @@ form:not([novalidate]) {
   }
 }
 
-.input-group > .input-group-fix {
+.input-group > .input-group-fix, .input-group > .input-group-fix > .btn {
   border-top-right-radius: .25rem !important;
   border-bottom-right-radius: .25rem !important;;
 }
