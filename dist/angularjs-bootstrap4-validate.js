@@ -123,7 +123,16 @@ angular.module('validate', []);
 					return ngModel.$dirty;
 				}, function(nV){
 					if(nV){
-						element.parent().addClass('was-validated');
+            if(attrs['type'] === 'radio') {
+              // mark all radio elements with same name attribute as validated
+              ngModel.$$parentForm.$getControls().forEach((control) => {
+                if (control.$name === ngModel.$name) {
+                  control.$$element.parent().addClass('was-validated');
+                }
+              });
+            }else {
+              element.parent().addClass('was-validated');
+            }
 					}
 				});
 
