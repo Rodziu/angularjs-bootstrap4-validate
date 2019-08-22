@@ -18,7 +18,7 @@ form:not([novalidate]) {
     }
   }
 
-  &.was-validated {
+  &.was-validated, .was-validated {
     @each $state, $data in $form-validation-states {
       $color: map-get($data, color);
       $icon: map-get($data, icon);
