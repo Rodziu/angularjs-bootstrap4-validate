@@ -43,8 +43,13 @@ angular.module('exampleApp', ['validate'])
 			urls: "http://example.com\nhttps://www.example.com",
 			hosts: "example.com\nwww.example.com",
 			eq1: '1',
-			eq2: '2'
+			eq2: '2',
+      custom: 'test'
 		};
+
+		this.validateCustom = function(value){
+		  return value === 'test';
+    };
 
 		$rootScope.nav = [];
 	}])

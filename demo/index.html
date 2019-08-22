@@ -273,7 +273,9 @@
 					a directive to desired form control
 					(eg. <code>&lt;input type="text" ng-model="..." validate-url/&gt;</code>).<br/>
 					<code>validate-url</code> and <code>validate-host</code> can also be added to an &lt;textarea&gt;
-					element and validate it contents line by line.
+					element and validate it contents line by line.<br/>
+					validate-custom allows one to provide a callback, which accepts a <code>value</code> parameter and returns a
+					<code>bool</code> results indicating it's validation status.
 				</div>
 				<div class="card-body">
 					<form>
@@ -304,6 +306,12 @@
 							<div class="col-md-3 mb-3">
 								<label>validate-host</label>
 								<textarea class="form-control" ng-model="vm.ex5.hosts" validate-host></textarea>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label>validate-custom</label>
+								<input type="text" class="form-control" ng-model="vm.ex5.custom"
+									   validate-custom="vm.validateCustom(value)"
+									   validate-custom-error-msg="Invalid custom"/>
 							</div>
 						</div>
 
