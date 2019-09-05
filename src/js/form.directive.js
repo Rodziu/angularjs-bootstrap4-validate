@@ -29,6 +29,10 @@
 					angular.element(element[0].querySelectorAll('.was-validated')).removeClass('was-validated');
 					element.removeClass('was-validated');
 				}
+
+				formCtrl.showValidation = function(){
+          element.addClass('was-validated');
+        }
 			}
 		}
 	}
