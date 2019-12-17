@@ -61,11 +61,12 @@ angular.module('validate', []);
                         const [formCtrl, parentFormCtrl] = ctrl;
                         if (angular.isDefined(parentFormCtrl.validationMode)) {
                             formCtrl.validationMode = parentFormCtrl.validationMode;
-                            ['resetValidation', 'showValidation'].forEach((fn) => {
-                                formCtrl[fn] = function() {
-                                    parentFormCtrl[fn]();
-                                };
-                            });
+                            formCtrl.resetValidation = function() {
+                                parentFormCtrl.resetValidation();
+                            };
+                            formCtrl.showValidation = function() {
+                                element.addClass('was-validated');
+                            };
                         }
                     },
                 };

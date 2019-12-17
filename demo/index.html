@@ -15,6 +15,11 @@
 			margin: 0 0 20px;
 			border-bottom: 1px solid #eee;
 		}
+		ng-form {
+			border: 1px dashed;
+			padding: 5px;
+			display: block;
+		}
 	</style>
 </head>
 <body>
@@ -446,7 +451,7 @@
 								<input type="text" class="form-control" ng-model="vm.ngfEx.last_name" required>
 							</div>
 						</div>
-						<ng-form>
+						<ng-form name="sub">
 							<div class="form-row">
 								<div class="col-md-6 mb-3">
 									<label>Username</label>
@@ -458,19 +463,22 @@
 									</div>
 								</div>
 								<div class="col-md-6 mb-3">
-									<ng-form>
+									<ng-form name="sub2">
 										<label>Gender</label>
 										<select class="form-control" ng-model="vm.ngfEx.gender" required>
 											<option></option>
 											<option>Male</option>
 											<option>Female</option>
 										</select>
-										<ng-form></ng-form>
+										<button class="btn btn-primary mt-2" type="button" ng-click="sub2.showValidation()">show validation</button>
+										<button class="btn btn-primary mt-2" type="button" ng-click="sub2.resetValidation()">reset validation</button>
 									</ng-form>
 								</div>
 							</div>
+							<button class="btn btn-primary" type="button" ng-click="sub.showValidation()">show validation</button>
+							<button class="btn btn-primary" type="button" ng-click="sub.resetValidation()">reset validation</button>
 						</ng-form>
-						<button class="btn btn-primary" type="submit">Submit form</button>
+						<button class="btn btn-primary mt-2" type="submit">Submit form</button>
 					</form>
 				</div>
 			</div>

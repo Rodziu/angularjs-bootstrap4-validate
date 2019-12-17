@@ -58,6 +58,10 @@ angular.module('exampleApp', ['validate'])
         };
 
         $rootScope.nav = [];
+
+        this.sub = function(arg) {
+            console.log(arg);
+        };
     }])
     /**
      * @ngdoc component
