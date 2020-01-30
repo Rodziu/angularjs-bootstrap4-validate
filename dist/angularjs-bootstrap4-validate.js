@@ -178,7 +178,9 @@ angular.module('validate', []);
 
 				// cleanup
 				scope.$on('$destroy', function(){
-					invalidFeedback.remove();
+					if (invalidFeedback !== null) {
+						invalidFeedback.remove();
+					}
 				});
 			}
 		}
