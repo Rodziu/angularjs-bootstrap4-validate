@@ -21,19 +21,23 @@
                         }
 
                         formCtrl.validationMode = attrs['validateMode'] || validate.mode;
+                        formCtrl.wasValidated = element.hasClass('was-validated');
 
                         element[0].addEventListener('submit', function() {
-                            element.addClass('was-validated');
+                            formCtrl.showValidation();
                         });
 
                         formCtrl.resetValidation = function() {
                             formCtrl.$setPristine();
                             angular.element(element[0].querySelectorAll('.was-validated')).removeClass('was-validated');
                             element.removeClass('was-validated');
+                            _recursiveValidationReset(formCtrl);
+                            formCtrl.wasValidated = false;
                         };
 
                         formCtrl.showValidation = function() {
                             element.addClass('was-validated');
+                            formCtrl.wasValidated = true;
                         };
                     }
                 }
@@ -57,12 +61,24 @@
                             };
                             formCtrl.showValidation = function() {
                                 element.addClass('was-validated');
+                                formCtrl.wasValidated = true;
                             };
                         }
                     },
                 };
             },
         };
+    }
+
+    //////
+
+    function _recursiveValidationReset(formCtrl) {
+        formCtrl.$$controls.forEach((control) => {
+            if (angular.isDefined(control.resetValidation)) {
+                control.wasValidated = false;
+                _recursiveValidationReset(control);
+            }
+        });
     }
 
     /**
