@@ -154,7 +154,7 @@ angular.module('validate', []);
                             if (angular.isDefined(msg)) {
                                 let value = attrs[e] || attrs[attrs.$normalize('ng-' + e)];
                                 try {
-                                    value = $parse(value);
+                                    value = $parse(value)(scope);
                                     // try to $parse for expressions, treat them literally on error
                                 } catch (error) {
                                     // eslint-disable-line no-empty
