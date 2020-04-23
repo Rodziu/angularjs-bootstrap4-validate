@@ -43,6 +43,9 @@ form:not([novalidate]) {
           @if $enable-validation-icons {
             padding-right: $custom-select-feedback-icon-padding-right;
             background: $custom-select-background, escape-svg($icon) $custom-select-bg no-repeat $custom-select-feedback-icon-position / $custom-select-feedback-icon-size;
+            &[disabled] {
+              background: $custom-select-background, escape-svg($icon) $custom-select-disabled-bg no-repeat $custom-select-feedback-icon-position / $custom-select-feedback-icon-size;
+            }
           }
         }
       }

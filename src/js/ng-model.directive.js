@@ -35,10 +35,17 @@
                             '<div class="invalid-' + formCtrl.validationMode + '"></div>'
                         );
                         element.parent().append(invalidFeedback);
-                        if (
-                            element.parent().hasClass('input-group')
-                        ) {
-                            angular.element(invalidFeedback[0].previousElementSibling).addClass('input-group-fix');
+                        if (validate.inputGroupFix) {
+                            scope.$watch(() => {
+                                return element.parent().hasClass('input-group');
+                            }, (nV) => {
+                                const siblingElement = angular.element(invalidFeedback[0].previousElementSibling);
+                                if (nV) {
+                                    siblingElement.addClass('input-group-fix');
+                                } else {
+                                    siblingElement.removeClass('input-group-fix');
+                                }
+                            });
                         }
                     }
                     ngModel.errorMessages = [];
