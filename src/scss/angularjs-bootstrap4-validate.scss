@@ -1,6 +1,6 @@
 /*!
  * AngularJS validation plugin for  Bootstrap 4
- *  Copyright (c) 2019 Rodziu <mateusz.rohde@gmail.com>
+ *  Copyright (c) 2019-2021 Rodziu <mateusz.rohde@gmail.com>
  *  License: MIT
  */
 
@@ -51,9 +51,4 @@ form:not([novalidate]) {
       }
     }
   }
-}
-
-.input-group > .input-group-fix, .input-group > .input-group-fix > .btn, .input-group > .input-group-fix > .input-group-text {
-  border-top-right-radius: .25rem !important;
-  border-bottom-right-radius: .25rem !important;;
 }

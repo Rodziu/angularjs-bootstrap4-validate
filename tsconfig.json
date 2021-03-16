@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "ES2015",
+    "outDir": "./.build",
+    "rootDir": "./src"
+  }
+}
