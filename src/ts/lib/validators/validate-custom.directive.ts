@@ -7,7 +7,9 @@
 import {IDirective} from 'angular';
 import {IValidateNgModelController} from '../ng-model.directive';
 
-
+/**
+ * @ngInject
+ */
 class ValidateCustomDirectiveController {
     ngModel: IValidateNgModelController;
     validateCustom: (locals: { value: unknown }) => boolean;
@@ -25,10 +27,6 @@ class ValidateCustomDirectiveController {
         };
     }
 }
-
-/**
- * @ngInject
- */
 export function validateCustomDirective(): IDirective {
     return {
         restrict: 'A',

@@ -386,6 +386,9 @@ __webpack_require__.r(__webpack_exports__);
  *  Copyright (c) 2019-2021 Rodziu <mateusz.rohde@gmail.com>
  *  License: MIT
  */
+/**
+ * @ngInject
+ */
 class ValidateCustomDirectiveController {
     constructor($element) {
         this.$element = $element;
@@ -398,9 +401,7 @@ class ValidateCustomDirectiveController {
         };
     }
 }
-/**
- * @ngInject
- */
+ValidateCustomDirectiveController.$inject = ["$element"];
 function validateCustomDirective() {
     return {
         restrict: 'A',
