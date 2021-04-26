@@ -4,7 +4,7 @@
  *  License: MIT
  */
 
-import {IAttributes, IDirective, IFormController, IScope} from 'angular';
+import {IAttributes, IDirective, IFormController, IRootScopeService, IScope} from 'angular';
 import * as angular from 'angular';
 import {validationMode, ValidateProvider} from './validate.provider';
 
@@ -18,7 +18,7 @@ export interface IValidateFormController extends IFormController {
 /**
  *  @ngInject
  */
-export function formDirective(validate: ValidateProvider): IDirective {
+export function formDirective(validate: ValidateProvider, $rootScope: IRootScopeService): IDirective {
     /**
      * @ngdoc component
      * @name form
@@ -53,6 +53,9 @@ export function formDirective(validate: ValidateProvider): IDirective {
                     formCtrl.showValidation = () => {
                         element.addClass('was-validated');
                         formCtrl.wasValidated = true;
+                        if (!$rootScope['$$phase']) {
+                            scope.$digest();
+                        }
                     };
                 }
             }

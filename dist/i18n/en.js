@@ -65,6 +65,7 @@ angular__WEBPACK_IMPORTED_MODULE_1__.module(_lib_validate_module__WEBPACK_IMPORT
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
 /******/ var __webpack_exports__ = (__webpack_exec__("./.build/i18n/en.js"));
 /******/ __webpack_exports__ = __webpack_exports__.default;
+/******/ return __webpack_exports__;
 /******/ }
 ]);
 });

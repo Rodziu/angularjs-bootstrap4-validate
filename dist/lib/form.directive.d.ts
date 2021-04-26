@@ -1,4 +1,4 @@
-import { IDirective, IFormController } from 'angular';
+import { IDirective, IFormController, IRootScopeService } from 'angular';
 import { validationMode, ValidateProvider } from './validate.provider';
 export interface IValidateFormController extends IFormController {
     validationMode: validationMode;
@@ -9,5 +9,5 @@ export interface IValidateFormController extends IFormController {
 /**
  *  @ngInject
  */
-export declare function formDirective(validate: ValidateProvider): IDirective;
+export declare function formDirective(validate: ValidateProvider, $rootScope: IRootScopeService): IDirective;
 export declare function ngFormDirective(): IDirective;

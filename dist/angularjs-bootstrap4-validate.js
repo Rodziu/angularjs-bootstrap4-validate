@@ -34,7 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  *  @ngInject
  */
-function formDirective(validate) {
+function formDirective(validate, $rootScope) {
     /**
      * @ngdoc component
      * @name form
@@ -65,6 +65,9 @@ function formDirective(validate) {
                     formCtrl.showValidation = () => {
                         element.addClass('was-validated');
                         formCtrl.wasValidated = true;
+                        if (!$rootScope['$$phase']) {
+                            scope.$digest();
+                        }
                     };
                 }
             };
@@ -80,7 +83,7 @@ function formDirective(validate) {
         });
     }
 }
-formDirective.$inject = ["validate"];
+formDirective.$inject = ["validate", "$rootScope"];
 function ngFormDirective() {
     return {
         restrict: 'EAC',
@@ -723,7 +726,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_angular__;
 /******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
 /******/ 				}
 /******/ 			}
-/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
 /******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			for(;i < chunkIds.length; i++) {
 /******/ 				chunkId = chunkIds[i];
@@ -732,7 +735,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_angular__;
 /******/ 				}
 /******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
-/******/ 			__webpack_require__.O();
+/******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
 /******/ 		var chunkLoadingGlobal = window["webpackChunk_name_"] = window["webpackChunk_name_"] || [];
