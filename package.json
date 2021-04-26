@@ -1,6 +1,6 @@
 {
   "name": "angularjs-bootstrap4-validate",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "AngularJS validation plugin for Bootstrap 4.",
   "main": "dist/angularjs-bootstrap4-validate.js",
   "repository": "https://github.com/Rodziu/angularjs-bootstrap4-validate",
